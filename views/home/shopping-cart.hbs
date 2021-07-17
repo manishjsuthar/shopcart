@@ -1,0 +1,353 @@
+{{!-- <div class="container mx-5 my-5">
+    {{# if products }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-3 col-sm-3">
+            <ul class="list-group">
+                {{# each products }}
+                <li class="list-group-item">
+                    <span class="badge">{{ this.qty }}</span>
+                    <strong>{{ this.item.title }} </strong>
+                    <span class="btn btn-success">Rs: {{ this.price }}</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown">Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/reduce/{{this.item._id}}">Reduce by 1</a></li>
+                            <li><a href="/remove/{{this.item._id}}">Remove All</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <strong>Total: {{ totalPrice }}</strong>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/checkout"><button type="submit" class="btn btn-secondary">Checkout</button></a>
+        </div>
+    </div>
+    {{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No Items in Cart</h2>
+        </div>
+    </div>
+    {{/if}}
+</div> --}}
+
+
+
+<div class="card my-5">
+    {{# if products }}
+        <div class="row">
+
+            <div class="col-md-8 cart">
+
+                <div class="row">  
+                    <div class="col">
+                    <h2 class="title"><i class="fas fa-shopping-cart"></i> Shopping Cart </h2> 
+                    </div>
+                    <div class="col">
+                    <a href="/remove/{{this.item._id}}">Remove All</a>
+                    </div>
+                </div>
+                {{# each products }}
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src={{this.item.imagePath}}></div>
+
+                        <div class="col">
+                            <div class="row text-muted">Accessories</div>
+                            <div class="row">{{ this.item.title }}</div>
+                        </div>
+
+                        
+
+                        <div class="col">Qty: {{ this.qty }} </div>
+                        <div class="col"><span>&#8377; {{ this.price }}</span>
+                           
+                        </div>
+                        <div class="col"><a href="/reduce/{{this.item._id}}"><i class="fas fa-trash"></i></a></div>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="back-to-shop mt-1"><a href="/spare" class="text-decoration-none"><i class="fas fa-hand-point-left"></i> Back to shop</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Summary</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col text-muted" style="padding-left:20px;">Item</div>
+
+                    <div class="col text-muted" style="padding-left:50px;">Total Price</div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col" style="padding-left:20px;">{{ totalQty}}</div>
+
+                    <div class="col" style="padding-left:60px;"><span>&#8377;</span>{{ totalPrice }}</div>
+                </div>
+
+
+                <form>
+                    <p>SHIPPING</p> <select>
+                        <option class="text-muted">Standard-Delivery- <span>&#8377;</span> 60</option>
+                        <option class="text-muted">Express-Delivery- <span>&#8377;</span> 100</option>
+                    </select>
+                    <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
+                </form>
+
+
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">TOTAL(PRICE+SHIPPING) <span>&#8377;</span>{{ totalPrice }} </div>
+                    <div class="col text-right"></div>
+                </div> <a href="/checkout"> <button class="btn bg-dark text-light check">CHECKOUT  <i class="fas fa-credit-card"></i></button></a>
+            </div>
+        </div>
+    {{ else }}
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div>
+                    <h2 class="title"><i class="fas fa-shopping-cart"></i> Shopping Cart </h2> 
+                </div>
+                 <div class="row border-top ">
+                     <h4 class="text-center my-5">No Items in Cart</h4>
+                 </div>
+                <div class="back-to-shop "><a href="/spare" class="text-decoration-none"><i class="fas fa-hand-point-left"></i> Back to shop</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Summary</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col text-muted" style="padding-left:20px;">Item</div>
+
+                    <div class="col text-muted" style="padding-left:50px;">Total Price</div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col" style="padding-left:20px;">{{ session.cart.totalQty}}</div>
+
+                    <div class="col" style="padding-left:60px;"><span>&#8377;</span>{{ totalPrice }}</div>
+                </div>
+
+
+                <form>
+                    <p>SHIPPING</p> <select>
+                        <option class="text-muted">Standard-Delivery- <span>&#8377;</span> 60</option>
+                        <option class="text-muted">Express-Delivery- <span>&#8377;</span> 100</option>
+                    </select>
+                    <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
+                </form>
+
+
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">TOTAL(PRICE+SHIPPING) <span>&#8377;</span>{{ totalPrice }}</div>
+                    <div class="col text-right"></div>
+                </div><button class="btn bg-dark text-light check">CHECKOUT  <i class="fas fa-credit-card"></i></button>
+            </div>
+        </div>
+    {{/if}}
+</div>
+
+
+
+
+<style>
+    body {
+        background: #dddddd;
+        min-height: 100vh;
+        vertical-align: middle;
+        display: flex;
+    }
+
+    .title {
+        margin-bottom: 4vh;
+    }
+
+    .card {
+        margin: auto;
+        max-width: 1200px;
+        width: 90%;
+        box-shadow: 2px 8px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 1rem;
+        border: transparent
+    }
+
+    @media(max-width:767px) {
+        .card {
+            margin: 3vh auto
+        }
+    }
+
+    .cart {
+        background-color: #fff;
+        padding: 4vh 5vh;
+        border-bottom-left-radius: 1rem;
+        border-top-left-radius: 1rem
+    }
+
+    @media(max-width:767px) {
+        .cart {
+            padding: 4vh;
+            border-bottom-left-radius: unset;
+            border-top-right-radius: 1rem
+        }
+    }
+
+    .summary {
+        background-color: #ddd;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        padding: 4vh;
+        color: rgb(65, 65, 65)
+    }
+
+    @media(max-width:767px) {
+        .summary {
+            border-top-right-radius: unset;
+            border-bottom-left-radius: 1rem
+        }
+    }
+
+    .summary .col-2 {
+        padding: 0
+    }
+
+    .summary .col-10 {
+        padding: 0
+    }
+
+    
+    .row {
+        margin: 0
+    }
+ 
+
+    .title b {
+        font-size: 1.5rem
+    }
+
+    .main {
+        margin: 0;
+        padding: 2vh 0;
+        width: 100%
+    }
+
+    .col-2,
+    .col {
+        padding: 0 1vh
+    }
+
+    a {
+        padding: 0 1vh
+    }
+
+    .close {
+        margin-left: auto;
+        font-size: 0.7rem
+    }
+
+    img {
+        width: 3.5rem
+    }
+
+    .back-to-shop {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-left: 2vh;
+        margin-bottom: 2vh;
+    }
+
+    .check {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 8vh;
+        margin-bottom: 4vh;
+    }
+
+    h5 {
+        margin-top: 4vh;
+    }
+
+    hr {
+        margin-top: 1.25rem
+    }
+
+    form {
+        padding: 2vh 0
+    }
+
+    select {
+        border: 1px solid rgba(0, 0, 0, 0.137);
+        padding: 1.5vh 1vh;
+        margin-bottom: 4vh;
+        outline: none;
+        width: 100%;
+        background-color: rgb(247, 247, 247)
+    }
+
+    input {
+        border: 1px solid rgba(0, 0, 0, 0.137);
+        padding: 1vh;
+        margin-bottom: 4vh;
+        outline: none;
+        width: 100%;
+        background-color: rgb(247, 247, 247)
+    }
+
+    input:focus::-webkit-input-placeholder {
+        color: transparent
+    }
+
+    
+
+
+
+    .btn:focus {
+        box-shadow: none;
+        outline: none;
+        box-shadow: none;
+        color: white;
+        -webkit-box-shadow: none;
+        -webkit-user-select: none;
+        transition: none
+    }
+
+    .btn:hover {
+        color: white
+    }
+
+    a {
+        color: black
+    }
+
+    a:hover {
+        color: black;
+        text-decoration: none
+    }
+
+    #code {
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: center
+    }
+</style>

@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand ms-5" href="#">Laxmi-Gaytri Masala</a>
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#basicExampleNav"
+        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse ms-5" id="basicExampleNav">
+
+        <!-- <div class="position-absolute top-0 start-50  translate-middle-x"> -->
+        <ul class="nav navbar-nav me-auto ms-auto">
+            <li class="nav-item me-2">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item me-2">
+                <a class="nav-link" href="/#about1">About-Us</a>
+            </li>
+            <li class="nav-item me-2">
+                <a class="nav-link" href="/spare">Products</a>
+            </li>
+            <li class="nav-item me-2">
+                <a class="nav-link" href="/enquiry">Enquiry-form</a>
+            </li>
+            <li class="nav-item me-2">
+                <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+        </ul>
+        <!--  </div> -->
+
+        <!--  		<div class="navbar-nav ms-auto">  -->
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item me-1">
+            <div class="dropdown">
+                <button class="btn btn-dark btn-outline-light me-1" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                   <i class="fas fa-user"></i> User
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    {{# if login}}
+                    <li><a class="dropdown-item" href="/profile"><i class="fas fa-user-circle"></i> User Account</a></li>
+                    <hr>
+                    <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    {{ else }}
+                    <li><a class="dropdown-item" href="/signin"><i class="fas fa-sign-in-alt"></i> Signin</a></li>
+                    <hr>
+                    <li><a class="dropdown-item" href="/signup"><i class="fas fa-user-plus"></i> SignUp</a></li>
+                    <hr>
+                    <li><a class="dropdown-item" href="/admin/login"><i class="fas fa-user-plus"></i> Admin Panel</a></li>
+                    {{/if }}
+                </ul>
+            </div>
+            </li>
+            <li class="nav-item me-1">
+                <button type="button" class="btn btn-dark btn-outline-light me-1 "><a href="/shopping-cart/"
+                class="text-decoration-none text-reset"><i class="fas fa-shopping-cart"></i> Cart
+                <span class="badge">{{ totalQty}}</span>
+                </a></button>
+            </li>
+        </ul>
+        <!-- </div> -->
+    </div>
+</nav>

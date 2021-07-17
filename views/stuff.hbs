@@ -1,0 +1,28 @@
+<!-- products display -->
+  <div class="row">
+    {{# each datas}}
+      <div class="col-sm-6 col-md-4" align="center" id ="product">
+        <img src={{this.imagePath}} id="thumbnail" alt="">
+
+          <h3>{{ this.title}}</h3>
+          <p>{{ this.description}}</p>
+          <p>{{this.price}}</p>
+          <a href="/add_to_cart/{{this._id}}" class="btn btn-success" role= "button">Add to cart</a>
+      </div>
+      {{/each}}
+      <!-- pagination -->
+      <div class="row">
+        <div class="col">
+          <div class="pagination pagination-centered">
+            <ul>
+              {{#paginate pagination }}
+                <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">First</a>First</li>
+              {{/paginate}}
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+  </div>
