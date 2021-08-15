@@ -1,47 +1,9 @@
-{{!-- <div class="container mx-5 my-5">
-    {{# if products }}
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-md-3 col-sm-3">
-            <ul class="list-group">
-                {{# each products }}
-                <li class="list-group-item">
-                    <span class="badge">{{ this.qty }}</span>
-                    <strong>{{ this.item.title }} </strong>
-                    <span class="btn btn-success">Rs: {{ this.price }}</span>
-                    <div class="btn-group">
-                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown">Action <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/reduce/{{this.item._id}}">Reduce by 1</a></li>
-                            <li><a href="/remove/{{this.item._id}}">Remove All</a></li>
-                        </ul>
-                    </div>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+<div style="display:none;" id="myAlert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Hello Customer!</strong> Please add some item to go to checkout.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-            <strong>Total: {{ totalPrice }}</strong>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-            <a href="/checkout"><button type="submit" class="btn btn-secondary">Checkout</button></a>
-        </div>
-    </div>
-    {{ else }}
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-            <h2>No Items in Cart</h2>
-        </div>
-    </div>
-    {{/if}}
-</div> --}}
-
-
+</div>
 
 <div class="card my-5">
     {{# if products }}
@@ -49,18 +11,18 @@
 
             <div class="col-md-8 cart">
 
-                <div class="row">  
+                <div class="row">
                     <div class="col">
-                    <h2 class="title"><i class="fas fa-shopping-cart"></i> Shopping Cart </h2> 
+                        <h2 class="title"><i class="fas fa-shopping-cart"></i> Shopping Cart </h2>
                     </div>
-                    <div class="col">
-                    <a href="/remove/{{this.item._id}}">Remove All</a>
-                    </div>
+                </div>
+                <div>
+                    <p><a href="/shopping-cart" class="text-decoration-none">Cart</a><i class="fas fa-caret-right"></i><a>Shipping</a> <i class="fas fa-caret-right"></i><a>Payment</a></p>
                 </div>
                 {{# each products }}
                 <div class="row border-top border-bottom">
                     <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src={{this.item.imagePath}}></div>
+                        <div class="col-2"><img class="img-fluid" src=/images/{{this.item.imagePath}}></div>
 
                         <div class="col">
                             <div class="row text-muted">Accessories</div>
@@ -87,9 +49,9 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col text-muted" style="padding-left:20px;">Item</div>
+                    <div class="col text-muted" style="padding-left:20px;"><u>Item</u></div>
 
-                    <div class="col text-muted" style="padding-left:50px;">Total Price</div>
+                    <div class="col text-muted" style="padding-left:50px;"><u>Total Price</u></div>
                 </div>
 
 
@@ -97,6 +59,11 @@
                     <div class="col" style="padding-left:20px;">{{ totalQty}}</div>
 
                     <div class="col" style="padding-left:60px;"><span>&#8377;</span>{{ totalPrice }}</div>
+                </div>
+
+                   <div class="row">
+                    <div class="col" style="padding-left:20px;">Shipping</div>
+                    <div class="col" style="padding-left:60px;"><span>&#8377;</span>{{shippingprice}}</div>
                 </div>
 
 
@@ -110,9 +77,9 @@
 
 
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">TOTAL(PRICE+SHIPPING) <span>&#8377;</span>{{ totalPrice }} </div>
+                    <div class="col">TOTAL(PRICE+SHIPPING): <span>&#8377;</span>{{ totalsp }} </div>
                     <div class="col text-right"></div>
-                </div> <a href="/checkout"> <button class="btn bg-dark text-light check">CHECKOUT  <i class="fas fa-credit-card"></i></button></a>
+                </div> <a href="/checkout"> <button class="btn btn-secondary bg-dark text-light ">CHECKOUT  <i class="fas fa-credit-card"></i></button></a>
             </div>
         </div>
     {{ else }}
@@ -145,6 +112,10 @@
 
                     <div class="col" style="padding-left:60px;"><span>&#8377;</span>{{ totalPrice }}</div>
                 </div>
+                 <div class="row">
+                    <div class="col" style="padding-left:20px;">Shipping</div>
+                    <div class="col" style="padding-left:60px;"><span>&#8377;</span>{{shippingprice}}</div>
+                </div>
 
 
                 <form>
@@ -157,18 +128,26 @@
 
 
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">TOTAL(PRICE+SHIPPING) <span>&#8377;</span>{{ totalPrice }}</div>
+                    <div class="col">TOTAL(PRICE+SHIPPING) <span>&#8377;</span>{{ totalPrice}}</div>
                     <div class="col text-right"></div>
-                </div><button class="btn bg-dark text-light check">CHECKOUT  <i class="fas fa-credit-card"></i></button>
+                </div>
+                <button class="btn btn-secondary bg-dark text-light" value="showAlert" onclick="showAlert();" >checkout <i class="fas fa-credit-card"></i> </button>
             </div>
         </div>
     {{/if}}
 </div>
 
-
-
+<script>
+function showAlert(){
+  if($("#myAlert").find("div#myAlert2").length==0){
+    $("#myAlert");
+  }
+  $("#myAlert").css("display", "");
+}
+</script>
 
 <style>
+   
     body {
         background: #dddddd;
         min-height: 100vh;
@@ -189,12 +168,6 @@
         border: transparent
     }
 
-    @media(max-width:767px) {
-        .card {
-            margin: 3vh auto
-        }
-    }
-
     .cart {
         background-color: #fff;
         padding: 4vh 5vh;
@@ -202,7 +175,7 @@
         border-top-left-radius: 1rem
     }
 
-    @media(max-width:767px) {
+    @media(max-width:1100px) {
         .cart {
             padding: 4vh;
             border-bottom-left-radius: unset;
@@ -219,9 +192,12 @@
     }
 
     @media(max-width:767px) {
+        .card {
+            margin: 3vh auto
+        }
         .summary {
             border-top-right-radius: unset;
-            border-bottom-left-radius: 1rem
+            border-bottom-left-radius: 1rem;
         }
     }
 
@@ -233,11 +209,9 @@
         padding: 0
     }
 
-    
     .row {
         margin: 0
     }
- 
 
     .title b {
         font-size: 1.5rem
@@ -276,7 +250,7 @@
     }
 
     .check {
-        position: absolute;
+        position: relative;
         bottom: 0;
         right: 0;
         margin-right: 8vh;
@@ -316,10 +290,6 @@
     input:focus::-webkit-input-placeholder {
         color: transparent
     }
-
-    
-
-
 
     .btn:focus {
         box-shadow: none;

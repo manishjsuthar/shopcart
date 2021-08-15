@@ -1,28 +1,26 @@
-<div class="row">
-  <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
-      <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
-          {{ successMsg }}
-      </div>
-  </div>
+<div class="contain1 mb-5">
+<img src="/images/productbanner.jpg" class="img1 img-fluid" alt="productbanner">
+<div class="centered"><strong><u>Products</u></strong></div>
 </div>
 <div class="container">
-  <div class="py-4 my-5 text-center">
-    <h1>Place Order<hr></h1>
-  </div>
   {{# each products }}
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center">
+  {{!-- row-cols-sm-2 row-cols-md-3 g-3 --}}
+  <div class="row row-cols-4 d-flex text-center">
     {{# each this }}
-    <div class="col my-3 ">
-      <div class="card mb-4 shadow-sm text-center">
-        <div class="card-header py-3 bg-secondary text-light">
+    <div class="col productscreen my-3 ">
+      <div class="card mb-4 shadow-sm text-center cardhover">
+        <div class="card-header py-3 bg-secondary">
           <h4 class="my-0 fw-normal " name="itemname">{{ this.title }}</h4>
         </div>
         <div class="card-body">
-          <img src="{{ this.imagePath }}" name="image" height="150" width="200" />
-          <h2 class="card-title pricing-card-title py-3" name="price3">Price: {{ this.price }}/-</h2>
+          
+          <img class="" src="/images/{{ this.imagePath }}" name="image" height="150" width="200" />
+          <p class="card-title pt-4" name="desc3">About:- {{ this.description }}</p>
+          
+          <h3 class="card-title pricing-card-title py-2 pricehover" name="price3">Price: {{ this.price }}/-<span class="badge alert-light" style="text-decoration: line-through;">{{this.mrpprice}}</span></h3>
           <a href="/add-to-cart/{{this._id}}" class="btn btn-default btn-sm">
           <button class="btn btn-success cart-button px-4 py-2"><i class="fa fa-shopping-cart lg"></i> Add to cart</button>
-          </a>
+          </a> 
         </div>
       </div>
     </div>
@@ -32,6 +30,77 @@
 </div>
 
 
+<style>
+  .productscreen {
+    max-width: 1300px;
+   
+}
+@media screen and (max-width: 1250px) {
+    .productscreen {  
+        width: 33%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .productscreen {  
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .productscreen {
+        margin-left: 50px;
+        width: 80%;
+    }
+}
+
+  .cardhover {
+    transition: 0.5s ease-in-out;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    cursor: pointer;
+  }
+
+  .cardhover:hover {
+    z-index: 100; 
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  }
+
+  .cardhover:hover  .pricehover {
+    color: red;
+  }
+
+  .card-header {
+    
+    color:#fff;
+  }
+
+  .cardhover:hover .card-header{
+  
+    color:#242424;
+  }
+
+  .contain1 {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size:2.5rem;
+}
+
+.img1 {
+  width: 100%;
+  height: 250px;
+}
+</style>
 
 
       

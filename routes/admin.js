@@ -1,65 +1,51 @@
-const AdminBro = require('admin-bro');
-const AdminBroExpress = require('@admin-bro/express');
-const AdminBroMongoose = require('@admin-bro/mongoose');
+const AdminBro = require('admin-bro')
+const AdminBroExpress = require('@admin-bro/express')
+const AdminBroMongoose = require('@admin-bro/mongoose')
+
 const mongoose = require('mongoose');
-
-
-const connect = mongoose.connect('mongodb://localhost:27017/shopcart',
-    {
-      useNewUrlParser: true, useUnifiedTopology: true,
-      useCreateIndex: true, useFindAndModify: false
-    })
-    .then(() => console.log('MongoDB Connected...'))
-    .catch(err => console.log(err));
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
-const Product = require('../models/product')
-
-
-
 const adminBro = new AdminBro({
   databases: [mongoose],
-  resources: [{
-    resource: Product,
-    options: {
-        parent: {
-            name: 'Admin Content',
-            icon: 'fas fa-cogs',
-        },
-        properties: {
-            imageUpload: {
-                components: {
-                   
-                },
-            },
-        },
-    },
-  }],
-  rootPath: '/admin',
+  rootPath: '/adminhp',
   branding: {
-      companyName: 'Sparekart',
-  },
-})
-
-const ADMIN = {
-    email: process.env.ADMIN_EMAIL || 'admin@example.com',
-    password: process.env.ADMIN_PASSWORD || 's123',
-}
-
-const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
-    cookieName: process.env.ADMIN_COOKIE_NAME || 'admin',
-    cookiePassword: process.env.ADMIN_COOKIE_PASS || 'supersecretpassword',
-    authenticate: async( email,password) => {
-        if(email=== ADMIN.email && password === ADMIN.password){
-            return ADMIN
-        }
-        return null
-    },
-},null, {	
-    resave: false,	
-    saveUninitialized: true,	
+            companyName: 'Laxmi Gaytri Masala',
+            softwareBrothers: false,   // if Software Brothers logos should be shown in the sidebar footer
+            logo: '/images/masalapic2.jpg',
+            // favicon: jsTalkFavico,
+            theme: {
+              colors: {
+                primary100: '#28BC92',
+                primary80: '#52C8A7',
+                primary60: '#7CD5BC',
+                primary40: '#A5E0CF',
+                primary20: '#CFEDE4',
+                // accent
+                accent: '#5DF02E',
+                hoverBg: '#59bda0',
+                // filter
+                filterBg: '#003024',
+              },
+            },
+          },
 });
 
+const router = AdminBroExpress.buildRouter(adminBro)
+// const ADMIN = {
+//   email: 'test@example.com',
+//   password: 'password',
+// }
+
+// const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
+//   authenticate: async (email, password) => {
+//     if (ADMIN.password === password && ADMIN.email === email) {
+//       return ADMIN
+//     }
+//     return null
+//   },
+//   cookieName: 'adminbro',
+//   cookiePassword: 'someLongAndStrongPassword',
+// })
 
 module.exports = router;

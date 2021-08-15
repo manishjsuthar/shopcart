@@ -1,0 +1,115 @@
+<div class="sidebar fixed-top bg-dark text-light">
+
+
+  <a class=" text-decoration-none text-reset" aria-current="page" href="/profile">
+    <img src="/images/house.svg">
+    Dashboard
+  </a>
+  <a class="active text-decoration-none text-reset" href="/useraccount">
+    <img src="/images/cart4.svg">
+    My account
+  </a>
+  <a class=" text-decoration-none text-reset" href="/userorder">
+    <img src="/images/file.svg">
+    Orders
+  </a>
+
+
+  <a class=" text-decoration-none text-reset" href="#">
+    <span data-feather="plus-circle" class="text-muted">Saved reports</span>
+  </a>
+
+
+  <a class=" text-decoration-none text-reset" href="#">
+    <img src="/images/journal.svg">
+    Current month
+  </a>
+
+
+</div>
+
+<div class="content">
+
+      <table class="table table-dark table-striped">
+        {{# if users }}
+
+        <thead>
+          <tr>
+            <th scope="row">Username</th>
+            <th scope="row">email</th>
+            <th scope="row">Phone</th>
+            <th scope="row">Gender</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{# each users }}
+          <tr>
+            <td>{{ this.username }}</td>
+            <td>{{ this.email }}</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          {{ else}}
+        </tbody>
+        {{/if}}
+      </table>
+</div>
+
+
+<style>
+  .sidebar {
+    margin-top: 6.8vh;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: absolute;
+    height: 1000px;
+    overflow: auto;
+  }
+
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+
+  .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  div.content {
+    margin-left: 220px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .sidebar a {
+      float: left;
+    }
+
+    div.content {
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+</style>

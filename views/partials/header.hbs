@@ -1,64 +1,148 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand ms-5" href="#">Laxmi-Gaytri Masala</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <a class="navbar-brand ms-5 " href="/"><strong style="font-size: 1.8rem;">Laxmi Gaytri Masala</strong></a>
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#basicExampleNav"
+    <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#basicExampleNav"
         aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse ms-5" id="basicExampleNav">
-
         <!-- <div class="position-absolute top-0 start-50  translate-middle-x"> -->
-        <ul class="nav navbar-nav me-auto ms-auto">
-            <li class="nav-item me-2">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
+        <ul class="nav navbar-nav me-auto ms-auto ">
+            <li class="nav-item me-2" >
+                <a class="nav-link " aria-current="page" href="/">Home</a>
             </li>
-            <li class="nav-item me-2">
-                <a class="nav-link" href="/#about1">About-Us</a>
+            <li class="nav-item me-2" >
+                <a class="nav-link" href="/#about1">About</a>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item me-2" >
                 <a class="nav-link" href="/spare">Products</a>
             </li>
             <li class="nav-item me-2">
                 <a class="nav-link" href="/enquiry">Enquiry-form</a>
             </li>
             <li class="nav-item me-2">
-                <a class="nav-link" href="/contact">Contact Us</a>
+                <a class="nav-link" href="/contact">Contact-Us</a>
             </li>
         </ul>
-        <!--  </div> -->
 
-        <!--  		<div class="navbar-nav ms-auto">  -->
         <ul class="navbar-nav ms-auto">
             <li class="nav-item me-1">
-            <div class="dropdown">
-                <button class="btn btn-dark btn-outline-light me-1" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
+            
+                <div class="btn btn-light btn-outline-dark  me-1 p-2">
                    <i class="fas fa-user"></i> User
-                </button>
+                </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    {{# if login}}
-                    <li><a class="dropdown-item" href="/profile"><i class="fas fa-user-circle"></i> User Account</a></li>
-                    <hr>
-                    <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                    {{ else }}
                     <li><a class="dropdown-item" href="/signin"><i class="fas fa-sign-in-alt"></i> Signin</a></li>
-                    <hr>
                     <li><a class="dropdown-item" href="/signup"><i class="fas fa-user-plus"></i> SignUp</a></li>
-                    <hr>
-                    <li><a class="dropdown-item" href="/admin/login"><i class="fas fa-user-plus"></i> Admin Panel</a></li>
-                    {{/if }}
                 </ul>
-            </div>
+        
             </li>
-            <li class="nav-item me-1">
-                <button type="button" class="btn btn-dark btn-outline-light me-1 "><a href="/shopping-cart/"
-                class="text-decoration-none text-reset"><i class="fas fa-shopping-cart"></i> Cart
-                <span class="badge">{{ totalQty}}</span>
-                </a></button>
+            <li class="nav-item me-1 parentx">
+                <a href="/shopping-cart" class="text-decoration-none text-reset"><button type="button" class="btn btn-light btn-outline-dark me-2 p-2"><i class="fas fa-shopping-cart"></i>
+                 Cart
+                <div class="ms-1 badge xmen">{{totalQty}}</div>
+                </button></a>
             </li>
         </ul>
         <!-- </div> -->
     </div>
 </nav>
+
+<style>
+    .navbar {
+        display: flex;
+    }
+
+    .navbar-brand {
+        color: #fff;
+        justify-self: start;
+        margin-left: 20px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-item {
+        font-size: 1.2rem;
+    }
+
+    .nav-link {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .nav-link:hover {
+        border-bottom: 4px solid rgb(17, 16, 16);
+        transition: all 0.2s ease-out;
+    }
+
+    .xmen {
+        background-color: #242424;
+        color: #fff;
+    }
+
+    .parentx:hover .xmen{
+        background-color: #fff;
+        color: #242424;
+    }
+
+    ul {
+        display: inline;
+        margin: 10px;
+        padding: 0;
+    }
+
+    ul li {
+        display: inline-block;
+    }
+
+    ul li:hover ul {
+        display: block;
+    }
+
+    ul li ul {
+        position: absolute;
+        width: 200px;
+        display: none;
+    }
+
+    ul li ul li {
+        display: block;
+    }
+
+    ul li ul li a {
+        display: block !important;
+    }
+
+    ul li ul li:hover {
+        background: #666;
+    }
+
+    @media screen and (max-width: 1000px) {
+
+        .nav-link,
+        .btn {
+            text-align: center;
+            padding: 1.5rem;
+            width: 100%;
+            display: table;
+        }
+
+        .btn {
+            padding: 4rem;
+            margin-bottom: 0.3vh;
+        }
+
+        .nav-link:hover {
+            background-color: #fff;
+            color: #242424;
+            border-radius: 0;
+        }
+    }
+</style>
