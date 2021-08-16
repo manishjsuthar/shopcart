@@ -53,7 +53,7 @@ var userRoutes = require('./routes/user');
 var app = express();
 
 // Connect to db
-mongoose.connect('mongodb://localhost:27017/shopcart', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+mongoose.connect('mongodb+srv://suthar123:suthar123@cluster1.r2b2l.mongodb.net/nodejs_shopcart?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 
 const instance = new Razorpay({
   key_id: process.env.KEY_ID,
@@ -76,7 +76,7 @@ app.use(session({
   secret: 'mysupersecret-and-secret-key',
   resave: true,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl:'mongodb://localhost:27017/shopcart' }),
+  store: MongoStore.create({ mongoUrl:'mongodb+srv://suthar123:suthar123@cluster1.r2b2l.mongodb.net/nodejs_shopcart?retryWrites=true&w=majority' }),
   cookie: { maxAge: 180 * 60 * 1000 }
 }));
 app.use(flash());
