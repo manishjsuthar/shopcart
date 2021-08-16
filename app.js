@@ -83,6 +83,7 @@ app.use(flash());
 app.use('/uploads', express.static('uploads'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const port = process.env.PORT || 3000;
 
 app.use('/', indexRouter);
 app.use('/adminhp', adminRouter);
@@ -164,4 +165,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(port,() => {
+  console.log(`listening at port: ${port}`);
+})
