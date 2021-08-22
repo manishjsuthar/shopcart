@@ -3,11 +3,11 @@ module.exports = function Cart(oldCart){
   // this.qty = oldCart.qty || 0;
   this.totalQty = oldCart.totalQty || 0;
   this.totalPrice = oldCart.totalPrice   || 0;
+  
   if(this.totalPrice >499){
     this.totalsp = oldCart.totalPrice  || 0;
     this.shippingprice = 0;
-  }else
-  {
+  }else{
     this.totalsp = oldCart.totalPrice + 60  || 0;
     this.shippingprice = 60;
   }
@@ -24,6 +24,13 @@ module.exports = function Cart(oldCart){
     this.totalPrice += storedItem.item.price;
     
   }
+
+  this.addByOne = function(id) {
+    this.items[id].qty++;
+    this.items[id].price += this.items[id].item.price;
+    this.totalQty++;
+    this.totalPrice += this.items[id].item.price;
+  };
 
   this.reduceByOne = function(id) {
     this.items[id].qty--;

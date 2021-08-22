@@ -1,7 +1,9 @@
-<div class="contain1 mb-5">
+<div class="article">
+<div class="contain1 mb-5 article">
 <img src="/images/productbanner.jpg" class="img1 img-fluid" alt="productbanner">
-<div class="centered"><strong><u>Products</u></strong></div>
+<div class="centered"><strong><u>Products</u></strong><br>(शुद्ध खाहो स्वस्थ रहो यही मंत्र है हमारा)</div>
 </div>
+<div class="fs-3 mb-2 me-5 text-end"><a href="/shopping-cart" class="text-decoration-none text-success "><u>Go to Cart </u><i class="fas fa-hand-point-right"></i></a></div>
 <div class="container">
   {{# each products }}
   {{!-- row-cols-sm-2 row-cols-md-3 g-3 --}}
@@ -14,8 +16,8 @@
         </div>
         <div class="card-body">
           
-          <img class="" src="/images/{{ this.imagePath }}" name="image" height="150" width="200" />
-          <p class="card-title pt-4" name="desc3">About:- {{ this.description }}</p>
+          <img class="" src="/images/{{ this.imagePath }}" name="image" height="200" width="200" />
+          <p class="card-title pt-4" name="desc3"><b>{{ this.description }}</b></p>
           
           <h3 class="card-title pricing-card-title py-2 pricehover" name="price3">Price: {{ this.price }}/-<span class="badge alert-light" style="text-decoration: line-through;">{{this.mrpprice}}</span></h3>
           <a href="/add-to-cart/{{this._id}}" class="btn btn-default btn-sm">
@@ -28,7 +30,7 @@
   </div>
 {{/each}}
 </div>
-
+</div>
 
 <style>
   .productscreen {

@@ -44,7 +44,7 @@ router.post('/enquiry', async (req, res) => {
       // send mail with defined transport object
       let info = await transporter.sendMail({
         from: req.body.eemail, // sender address
-        to: "sutharm80@gmail.com", // list of receivers
+        to: "laxmigayatripuremasala@gmail.com", // list of receivers
         subject: "Message from contact Form ✔", // Subject line
         text: "From: " + req.body.efname +" "+ req.body.elname + "\n" + "Phone no.: "+ req.body.ephone +"\n" + "Message : " + req.body.emessage, // plain text body
       });
@@ -72,6 +72,18 @@ router.post('/enquiry', async (req, res) => {
 
 router.get('/contact', function (req, res, next) {
   res.render('home/contact', { title: 'Sparekart' });
+});
+router.get('/privacypolicy', function (req, res, next) {
+  res.render('home/privacypolicy');
+});
+router.get('/cancellationpolicy', function (req, res, next) {
+  res.render('home/cancellationpolicy');
+});
+router.get('/paymentpolicy', function (req, res, next) {
+  res.render('home/paymentpolicy');
+});
+router.get('/shippingpolicy', function (req, res, next) {
+  res.render('home/shippingpolicy');
 });
 
 router.get('/shipping-detail', function (req, res, next) {
@@ -120,6 +132,14 @@ router.get('/reduce/:id', function (req, res, next) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
   cart.reduceByOne(productId);
+  req.session.cart = cart;
+  res.redirect('/shopping-cart');
+});
+router.get('/addByOne/:id', function (req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.addByOne(productId);
   req.session.cart = cart;
   res.redirect('/shopping-cart');
 });
