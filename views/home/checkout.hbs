@@ -1,6 +1,6 @@
-<div class="container article mx-5">
-    <main>
-        <div class="pt-5 text-center">
+<div class=" article mx-5">
+  <main>
+    <div class="pt-5 text-center">
       <img class="d-block mx-auto mb-4"
         src="https://cdn2.vectorstock.com/i/1000x1000/26/91/online-shop-logo-template-icon-vector-30562691.jpg" alt=""
         width="72" height="57">
@@ -11,48 +11,51 @@
     <div class="mb-5">
       <p><a href="/shopping-cart" class="text-decoration-none  text-danger">Cart</a> <i class="fas fa-caret-right"></i>
         <a href="/checkout" class="text-decoration-none text-reset">Shipping</a> <i class="fas fa-caret-right"></i>
-        <a>Payment</a></p>
+        <a>Payment</a>
+      </p>
     </div>
-      <form action="/checkout" method="post">
-    <div class="row g-5">
+    <form action="/checkout" method="post">
+      <div class="row g-5">
         <div class="col-md-5  col-lg-4 order-md-last">
 
           <h2 class="d-flex justify-content-between align-items-center mb-5">
-            <span class="text-primary"><i class="fas fa-shopping-cart"></i> Your cart <span class="text-dark">{{session.cart.totalQty}}</span></span>
+            <span class="text-primary"><i class="fas fa-shopping-cart"></i> Your cart <span
+                class="text-dark">{{session.cart.totalQty}}</span></span>
 
           </h2>
-          
-<table class="table mb-3 table-bordered table-hover">
-  <thead class="text-muted">
-    <tr>
-      <th scope="col">Itemname</th>
-      <th scope="col">Qty</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    {{# if products }}
-    {{# each products }}
-    <tr>
-      <td><input class="form-control-plaintext" name="oproduct" value="{{this.item.title}}" readonly></td>
-      <td><input class="form-control-plaintext" name="oproductqty" value=" {{ this.qty }}" readonly></td>
-      <td>Rs: {{ this.price }}</td>
-    </tr>
-    {{/each}}
-    {{/if}}
-    <tr>
-      <td>Standard Delivery</td>
-      <td></td>
-      <td>Rs: {{shippingprice}}</td>
-    </tr>
-    <tr>
-      <td><strong>Total(Price + Shipping)</strong></td>
-      <td> {{ totalQty}}</td>
-      <td><input class="form-control-plaintext bold" name="oproducttprice" value="Rs: {{totalsp}}" readonly></td>
-    </tr>
-  </tbody>
-</table>
+          <table class="table mb-3 table-bordered table-hover">
+            <thead class="text-muted">
+              <tr>
+                <th scope="col">Itemname</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {{# if products }}
+              {{# each products }}
+              <tr>
+                <td><input class="form-control-plaintext" name="oproduct" value="{{this.item.title}}" readonly></td>
+                <td><input class="form-control-plaintext" name="oproductqty" value=" {{ this.qty }}" readonly></td>
+                <td>Rs: {{ this.price }}</td>
+              </tr>
+              {{/each}}
+              {{/if}}
+              <tr>
+                <td>Standard Delivery</td>
+                <td></td>
+                <td>Rs: {{shippingprice}}</td>
+              </tr>
+              <tr>
+                <td><strong>Total(Price + Shipping)</strong></td>
+                <td> {{ totalQty}}</td>
+                <td><input class="form-control-plaintext bold" name="oproducttprice" value="Rs: {{totalsp}}" readonly>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
 
@@ -167,7 +170,7 @@
             <button class="w-100 btn btn-success btn-lg mb-5" type="submit">Continue to Shipping</button>
           </div>
         </div>
-    </div>
-  </form>
+      </div>
+    </form>
   </main>
 </div>
